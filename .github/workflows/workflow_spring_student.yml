@@ -9,7 +9,6 @@ jobs:
         with:
           distribution: 'correto' # See 'Supported distributions' for available options
           java-version: '21'
-      - run: java HelloWorldApp.java
 
       - name: Build with Maven
         run: mvn -B package --file pom.xml
