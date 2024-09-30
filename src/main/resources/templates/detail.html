@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détail pour l'étudiant</title>
+    <span th:replace="~{home :: bootstrapImports}"></span>
+
+</head>
+<body>
+<span th:replace="~{listStudent :: navbar}"></span>
+<main>
+    <h1 class="text-center">Détail de l'étudiant</h1>
+
+    <div class="card" style="width: 24rem; margin: 50px auto;">
+        <div class="card-header text-center">
+            <h5 class="card-title">Fiche Étudiante</h5>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th><i class="bi bi-person"></i> Nom</th>
+                    <td><span th:text="${student.getFirstname()}"></span></td>
+                </tr>
+                <tr>
+                    <th><i class="bi bi-person-bounding-box"></i> Prénom</th>
+                    <td><span th:text="${student.getLastname()}"></span></td>
+                </tr>
+                <tr>
+                    <th><i class="bi bi-calendar"></i> Âge</th>
+                    <td><span th:text="${student.getAge()}"></span></td>
+                </tr>
+                <tr>
+                    <th><i class="bi bi-envelope"></i> Email</th>
+                    <td><span th:text="${student.getEmail()}"></span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer text-center">
+            <a th:href="@{/delete(studentID=${student.getId()})}" class="btn btn-danger">Supprimer</a>
+            <a th:href="@{/update(studentID=${student.getId()})}" class="btn btn-primary">Modifier</a>
+            <a th:href="@{/listStudent}" class="btn btn-secondary">Retour</a>
+        </div>
+    </div>
+
+
+
+</main>
+
+<div class="background-logo"></div>
+</body>
+</html>
