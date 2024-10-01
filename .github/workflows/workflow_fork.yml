@@ -1,0 +1,11 @@
+name: Workflow lors d'un push
+ 
+on:
+  fork
+
+jobs:
+  premier-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Message après un fork
+        run: echo "il y a eut un fork sur le projet"
