@@ -12,4 +12,4 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ISSUE_URL: ${{ github.event.issue.html_url }}
-        run: gh issue comment $ISSUE_URL --body "Merci @${ISSUE_USER} d'avoir ouvert cette issue"
+        run: gh issue comment $ISSUE_URL --body "Merci @${{ github.actor}} d'avoir ouvert cette issue"
