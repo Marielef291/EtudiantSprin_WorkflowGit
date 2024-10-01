@@ -8,4 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Message après un fork
-        run: echo "il y a eut un fork sur le projet"
+        env:
+          MA_VARIABLE: ${{ vars.MA_VARIABLE }}
+          MON_SECRET: ${{ secrets.MON_SECRET }}
+        run: |
+          echo "Le secret est $MON_SECRET"
+          echo "Ma variable est $MA_VARIABLE"
