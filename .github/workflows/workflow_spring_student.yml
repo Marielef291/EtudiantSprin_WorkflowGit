@@ -1,14 +1,27 @@
 name: Workflow lors d'un push
-on : push
+ 
+on:
+  push:
+ 
 jobs:
-  mon_job:
+  Spring_exo:
     runs-on: ubuntu-latest
+ 
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      - name: Configuration du JDK
+        uses: actions/setup-java@v2
         with:
-          distribution: 'correto' # See 'Supported distributions' for available options
-          java-version: '21'
-
-      - name: Build with Maven
-        run: mvn -B package --file pom.xml
+          java-version: '22'
+          distribution: 'temurin'
+ 
+      - name: Récupération de notre application
+        uses: actions/checkout@v4
+ 
+      - name: Installation de Maven
+        run: sudo apt-get install maven -y
+ 
+      - name: Installation des dépendances
+        run: mvn install
+ 
+      - name: Build de l'application
+        run: mvn clean spring-boot:run
