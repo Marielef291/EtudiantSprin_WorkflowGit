@@ -1,5 +1,5 @@
-name: Workflow lors d'un push
- 
+name: Workflow lors d'un fork
+
 on:
   fork
 
@@ -11,6 +11,8 @@ jobs:
         env:
           MA_VARIABLE: ${{ vars.MA_VARIABLE }}
           MON_SECRET: ${{ secrets.MON_SECRET }}
+          ACTOR: ${{ github.actor }}
         run: |
           echo "Le secret est $MON_SECRET"
           echo "Ma variable est $MA_VARIABLE"
+          echo "Le fork a été fait par $ACTOR"
