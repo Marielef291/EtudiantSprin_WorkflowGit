@@ -1,52 +1,52 @@
-# name: Workflow lors d'un push
+name: Workflow lors d'un push
 
-# on:
-#   push:
+on:
+  push:
 
-# jobs:
-#   Spring_exo:
-#     runs-on: ubuntu-latest
+jobs:
+  Spring_exo:
+    runs-on: ubuntu-latest
 
-#     steps:
-#       - name: Récupération de notre application
-#         uses: actions/checkout@v4
+    steps:
+      - name: Récupération de notre application
+        uses: actions/checkout@v4
 
-#       - name: Configuration du JDK
-#         uses: actions/setup-java@v3
-#         with:
-#           distribution: 'temurin'
-#           java-version: '17' # Ou la version que tu utilises
+      - name: Configuration du JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17' # Ou la version que tu utilises
 
-#       - name: Mise en cache des dépendances
-#         uses: actions/cache@v4
-#         with:
-#           path: ~/.m2/repository
-#           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-#           restore-keys: |
-#             ${{ runner.os }}-maven-
+      - name: Mise en cache des dépendances
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
 
-#       - name: Installation des dépendances
-#         run: mvn install
+      - name: Installation des dépendances
+        run: mvn install
 
-#       - name: Tests de l'application
-#         run: mvn test
-#         continue-on-error: true
+      - name: Tests de l'application
+        run: mvn test
+        continue-on-error: true
 
-#       - name: Build de l'application
-#         run: mvn clean package
+      - name: Build de l'application
+        run: mvn clean package
 
-#       - name: Upload du build de notre application
-#         if: ${{ success() && github.ref == 'refs/heads/main' }}
-#         uses: actions/upload-artifact@v4
-#         with:
-#           name: mon_app
-#           path: target/
+      - name: Upload du build de notre application
+        if: ${{ success() && github.ref == 'refs/heads/main' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: mon_app
+          path: target/
 
-#   download:
-#     runs-on: ubuntu-latest
-#     needs: Spring_exo
-#     steps:
-#       - name: Récupération de l'artéfact
-#         uses: actions/download-artifact@v4
-#         with:
-#           name: mon_app
+  download:
+    runs-on: ubuntu-latest
+    needs: Spring_exo
+    steps:
+      - name: Récupération de l'artéfact
+        uses: actions/download-artifact@v4
+        with:
+          name: mon_app
