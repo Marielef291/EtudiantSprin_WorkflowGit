@@ -15,6 +15,7 @@ jobs:
         with:
           username: ${{ env.USERNAME }}
           password: ${{ env.PASSWORD }}
+          
       - name: builkd image
         run: docker build -t $USERNAME/spring_app .
 
